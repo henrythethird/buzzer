@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    </head>
+    <body>
+        {% block body %}
+            <div class="container">
+                <h1>Hi there</h1>
+            </div>
+        {% endblock %}
+        {% block javascripts %}
+        <style href="{{ asset('js/jquery.min.js') }}"></style>
+        <style href="{{ asset('js/bootstrap.min.js') }}"></style>
+        {% endblock %}
+    </body>
+</html>

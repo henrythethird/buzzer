@@ -1,0 +1,59 @@
+body {
+    padding-top: 20px;
+}
+
+.container {
+    max-width: 720px;
+}
+
+.header {
+    border-bottom: 1px solid grey;
+}
+
+td {
+    vertical-align: top;
+}
+
+.positions td {
+    padding-right: 20px;
+}
+
+.header h3 {
+    line-height: 40px;
+    margin-top: 0;
+}
+
+.footer {
+    margin-top: 20px;
+    color: #777;
+    padding-top: 15px;
+    border-top: 1px solid grey;
+}
+
+.center {
+
+}
+
+
+
+
+table.nutrition_table {
+    display: inline-block;
+}
+
+table.nutrition_table tr {
+    border: 1px solid black;
+}
+
+table.nutrition_table td, table.nutrition_table th {
+    padding: 0 10px;
+}
+
+table.nutrition_table tr.separator {
+    height: 4px;
+    background-color: black;
+}
+
+table.nutrition_table td.indent-1 {
+    padding-left: 25px;
+}

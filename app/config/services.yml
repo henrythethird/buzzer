@@ -1,0 +1,12 @@
+services:
+    app.mailer:
+        class: AppBundle\Service\MailService
+        arguments: ["@swiftmailer.mailer"]
+
+    app.printer:
+        class: AppBundle\Service\PrintService
+        arguments: ["%printer_ip%"]
+
+    app.dispatcher:
+        class: AppBundle\Service\DispatchService
+        arguments: [["@app.mailer", "@app.printer"]]
