@@ -5,7 +5,7 @@ services:
 
     app.printer:
         class: AppBundle\Service\PrintService
-        arguments: ["%printer_ip%"]
+        arguments: ["%printer_ip%", "@twig"]
 
     app.dispatcher:
         class: AppBundle\Service\DispatchService
