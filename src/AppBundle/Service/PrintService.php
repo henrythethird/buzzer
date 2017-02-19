@@ -26,12 +26,12 @@ class PrintService implements DispatchInterface
     public function dispatch(Buzz $buzz)
     {
         try {
-            $soap = new \SoapClient($this->printerIp);
+            /*$soap = new \SoapClient($this->printerIp);
             $content = $this->constructRequestContent($buzz);
 
             $method = "epos-print";
-            $soap->$method($content);
-        } catch (\SoapFault $fault) {
+            $soap->$method($content);*/
+        } catch (\Exception $fault) {
             // Ignore the fault for now (very bad practice -> don't do this at home)
         }
     }
