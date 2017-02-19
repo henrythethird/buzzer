@@ -1,1 +1,10 @@
 {% extends 'base.html.twig' %}
+
+{% block center %}
+    <h1>Buzzes</h1>
+    <ul>
+    {% for buzz in buzzes %}
+        <li>{{ buzz.date|date('H:i:s') }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
