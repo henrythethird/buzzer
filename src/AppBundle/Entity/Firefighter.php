@@ -25,12 +25,6 @@ class Firefighter
     private $activeFrom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     * @var User
-     */
-    private $user;
-
-    /**
      * @return mixed
      */
     public function getId()
@@ -53,24 +47,6 @@ class Firefighter
     public function setActiveFrom($activeFrom)
     {
         $this->activeFrom = $activeFrom;
-        return $this;
-    }
-
-    /**
-     * @return User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param User $user
-     * @return Firefighter
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
         return $this;
     }
 }
