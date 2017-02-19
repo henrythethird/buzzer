@@ -13,11 +13,11 @@ class PrintService implements DispatchInterface
     private $printerIp;
 
     /**
-     * @var TwigEngine
+     * @var \Twig_Environment
      */
     private $templating;
 
-    public function __construct($printerIp, TwigEngine $templating)
+    public function __construct($printerIp, \Twig_Environment $templating)
     {
         $this->printerIp = $printerIp;
         $this->templating = $templating;
