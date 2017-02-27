@@ -25,21 +25,34 @@ class PrintService implements DispatchInterface
 
     public function dispatch(Buzz $buzz)
     {
-        try {
-            /*$soap = new \SoapClient($this->printerIp);
-            $content = $this->constructRequestContent($buzz);
+        $ch = curl_init($this->constructUrl());
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $this->constructRequestContent($buzz));
 
-            $method = "epos-print";
-            $soap->$method($content);*/
-        } catch (\Exception $fault) {
-            // Ignore the fault for now (very bad practice -> don't do this at home)
-        }
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: text/xml; charset="utf-8"'
+        ));
+
+        curl_exec($ch);
+
+        curl_close($ch);
     }
 
     private function constructRequestContent(Buzz $buzz)
     {
-        return new \SoapVar($this->templating->render('print/ticket.xml.twig', [
+        $xml = $this->templating->render('print/ticket.xml.twig', [
             'buzz' => $buzz
-        ]), XSD_ANYXML);
+        ]);
+
+        simplexml_load_string($xml, "SimpleXMLElement", LIBXML_NOCDATA);
+        $json = json_encode($xml);
+
+        return json_decode($json,TRUE);
+    }
+
+    private function constructUrl()
+    {
+        return sprintf("http://%s/cgi-bin/epos/service.cgi?devid=local_printer&timeout=6000", $this->printerIp);
     }
 }
