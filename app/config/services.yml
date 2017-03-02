@@ -11,8 +11,13 @@ services:
         class: AppBundle\Service\DispatchService
         arguments: [["@app.mailer", "@app.printer"]]
 
+    app.fortune:
+        class: AppBundle\Service\FortuneService
+
+
     app.twig.wordwrap:
         class: AppBundle\Twig\Extension\WordwrapExtension
+        arguments: ["@app.fortune"]
         public: false
         tags:
             - { name: twig.extension }

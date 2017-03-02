@@ -2,14 +2,35 @@
 
 namespace AppBundle\Twig\Extension;
 
+use AppBundle\Service\FortuneService;
+
 class WordwrapExtension extends \Twig_Extension
 {
+    private $fortune;
+
+    public function __construct(FortuneService $fortune)
+    {
+        $this->fortune = $fortune;
+    }
+
     public function getFilters()
     {
         return [
             new \Twig_SimpleFilter('wordwrap', [$this, 'wordwrap']),
             new \Twig_SimpleFilter('repeat', [$this, 'repeat']),
         ];
+    }
+
+    public function getFunctions()
+    {
+        return [
+            new \Twig_SimpleFunction('fortune', [$this, 'fortune'])
+        ];
+    }
+
+    public function fortune()
+    {
+        return $this->fortune->generate();
     }
 
     /**
