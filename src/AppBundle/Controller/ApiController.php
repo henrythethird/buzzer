@@ -24,7 +24,7 @@ class ApiController extends Controller
             ->dispatchBuzz($buzz);
 
         return new JsonResponse([
-            'date' => $buzz->getDate()
+            'date' => $buzz->getIssueDate()
         ]);
     }
 }

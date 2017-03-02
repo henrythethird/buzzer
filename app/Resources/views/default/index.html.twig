@@ -1,10 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block center %}
-    <h1>Buzzes</h1>
-    <ul>
+    <h1>Buzzes:</h1>
+    <table class="table table-responsive">
+        <thead>
+        <tr>
+            <th>Number</th>
+            <th class="text-right">Issued</th>
+            <th class="text-right">Resolved</th>
+            <th class="text-right">Status</th>
+        </tr>
+        </thead>
+        <tbody>
     {% for buzz in buzzes %}
-        <li>{{ buzz.date|date('H:i:s') }}</li>
+        <tr>
+            <td>#{{ buzz.id }}</td>
+            <td class="text-right">{{ buzz.issueDate|dateFormat }}</td>
+            <td class="text-right">{{ buzz.resolveDate|dateFormat }}</td>
+            <td class="text-right">{% include 'helper/status.html.twig' with {status: buzz.status} %}</td>
+        </tr>
     {% endfor %}
-    </ul>
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block right %}
+    <h1>Firefighter</h1>
+
+    <p>Current firefighter: {{ firefighter.name }}</p>
 {% endblock %}

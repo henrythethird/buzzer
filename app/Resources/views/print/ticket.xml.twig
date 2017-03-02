@@ -1,31 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
-    <s:Body>
-        <epos-print xmlns="http://www.epson-pos.com/schemas/2011/03/epos-print">
-            <text lang="en" smooth="true"/>
+{% extends 'print/epos-print.xml.twig' %}
 
-            <text width="2" height="2" align="left">Ticket: #{{ buzz.id }}&#10;</text>
-            <feed line="1" />
-            <text width="1" height="1" align="left">Issue date: {{ buzz.date|date('d.m.Y') }}&#10;</text>
-            <text width="1" height="1" align="left">Issue time: {{ buzz.date|date('H:i:s') }} GMT&#10;</text>
-
-            <feed line="2" />
-            <text width="1" height="1" align="left">{{ "Please wait patiently. A member of our staff will be with you shortly" | wordwrap }}&#10;</text>
-
-            <feed line="2" />
-            <text width="1" height="1" align="left">The estimated queue time is 30 minutes.</text>
-            <feed line="2" />
-            <text width="1" height="1" align="left" em="true">{{ "Please come visit us again soon! We are looking forward to the next incident" | wordwrap }}</text>
-
-            <text em="false" />
-
-            <feed line="2" />
-            <text width="1" height="1" align="left">{{ '-'|repeat(42) }}</text>
-            <feed line="1" />
-            <text width="1" height="1" align="left">{{ fortune()|wordwrap }}</text>
-
-            <feed line="3" />
-            <cut type="feed"/>
-        </epos-print>
-    </s:Body>
-</s:Envelope>
+{% block content %}
+    <text width="2" height="2" align="left">Ticket nr: {{ ticket.nr }}&#10;</text>
+    <text width="1" height="1">{{ ticket.project }}</text>
+    <text>{{ ticket.points }}</text>
+    <text>{{ ticket.description }}</text>
+    <feed line="1" />
+{% endblock %}

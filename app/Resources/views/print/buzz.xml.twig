@@ -1,0 +1,23 @@
+{% extends 'print/epos-print.xml.twig' %}
+
+{% block content %}
+    <text width="2" height="2">Ticket: #{{ buzz.id }}&#10;</text>
+    <feed line="1" />
+    <text width="1" height="1">Issue date: {{ buzz.date|date('d.m.Y') }}&#10;</text>
+    <text>Issue time: {{ buzz.date|date('H:i:s') }} GMT&#10;</text>
+
+    <feed line="2" />
+    <text>{{ "Please wait patiently. A member of our staff will be with you shortly" | wordwrap }}&#10;</text>
+
+    <feed line="2" />
+    <text>Serving you today is: {{ firefighter }}</text>
+    <feed line="2" />
+    <text em="true">{{ "Please come visit us again soon! We are looking forward to the next incident" | wordwrap }}</text>
+
+    <text em="false" />
+
+    <feed line="2" />
+    <text>{{ '-'|repeat(42) }}</text>
+    <feed line="1" />
+    <text>{{ fortune()|wordwrap }}</text>
+{% endblock %}

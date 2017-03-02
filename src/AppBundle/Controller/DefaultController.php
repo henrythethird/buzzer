@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Buzz;
+use AppBundle\Entity\Firefighter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,8 +20,13 @@ class DefaultController extends Controller
             ->getRepository(Buzz::class)
             ->findAll();
 
+        $firefighter = $this->getDoctrine()
+            ->getRepository(Firefighter::class)
+            ->findActive();
+
         return [
-            'buzzes' => $buzzes
+            'buzzes' => $buzzes,
+            'firefighter' => $firefighter
         ];
     }
 }

@@ -1,11 +1,17 @@
 services:
+    app.repository.firefighter:
+        class: AppBundle\Repository\FirefighterRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - AppBundle\Entity\Firefighter
+
     app.mailer:
         class: AppBundle\Service\MailService
         arguments: ["@swiftmailer.mailer"]
 
     app.printer:
         class: AppBundle\Service\PrintService
-        arguments: ["%printer_ip%", "@twig"]
+        arguments: ["%printer_ip%", "@twig", "@app.repository.firefighter"]
 
     app.dispatcher:
         class: AppBundle\Service\DispatchService

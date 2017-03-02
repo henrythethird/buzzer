@@ -22,11 +22,30 @@ class Buzz
      * @ORM\Column(type="datetime")
      * @var \DateTime
      */
-    private $date;
+    private $issueDate;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $resolveDate;
+
+    /**
+     * @ORM\Embedded(class="AppBundle\Entity\BuzzStatus")
+     * @var BuzzStatus
+     */
+    private $status;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     * @var string
+     */
+    private $description;
 
     public function __construct()
     {
-        $this->date = new \DateTime();
+        $this->issueDate = new \DateTime();
+        $this->status = new BuzzStatus();
     }
 
     /**
@@ -40,18 +59,72 @@ class Buzz
     /**
      * @return \DateTime
      */
-    public function getDate()
+    public function getIssueDate()
     {
-        return $this->date;
+        return $this->issueDate;
     }
 
     /**
-     * @param \DateTime $date
+     * @param \DateTime $issueDate
      * @return Buzz
      */
-    public function setDate(\DateTime $date)
+    public function setIssueDate(\DateTime $issueDate)
     {
-        $this->date = $date;
+        $this->issueDate = $issueDate;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getResolveDate()
+    {
+        return $this->resolveDate;
+    }
+
+    /**
+     * @param \DateTime $resolveDate
+     * @return Buzz
+     */
+    public function setResolveDate(\DateTime $resolveDate = null)
+    {
+        $this->resolveDate = $resolveDate;
+        return $this;
+    }
+
+    /**
+     * @return BuzzStatus
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param BuzzStatus $status
+     * @return Buzz
+     */
+    public function setStatus(BuzzStatus $status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return Buzz
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
         return $this;
     }
 }

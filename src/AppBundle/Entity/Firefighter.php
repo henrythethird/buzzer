@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\FirefighterRepository")
  * @ORM\Table
  */
 class Firefighter
@@ -19,10 +19,22 @@ class Firefighter
     private $id;
 
     /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    private $name;
+
+    /**
      * @ORM\Column(type="datetime")
      * @var \DateTime
      */
     private $activeFrom;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $activeTo;
 
     /**
      * @return mixed
@@ -30,6 +42,24 @@ class Firefighter
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return Firefighter
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
     }
 
     /**
@@ -48,5 +78,28 @@ class Firefighter
     {
         $this->activeFrom = $activeFrom;
         return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getActiveTo()
+    {
+        return $this->activeTo;
+    }
+
+    /**
+     * @param \DateTime $activeTo
+     * @return Firefighter
+     */
+    public function setActiveTo($activeTo)
+    {
+        $this->activeTo = $activeTo;
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

@@ -18,6 +18,7 @@ class WordwrapExtension extends \Twig_Extension
         return [
             new \Twig_SimpleFilter('wordwrap', [$this, 'wordwrap']),
             new \Twig_SimpleFilter('repeat', [$this, 'repeat']),
+            new \Twig_SimpleFilter('dateFormat', [$this, 'dateFormat']),
         ];
     }
 
@@ -31,6 +32,11 @@ class WordwrapExtension extends \Twig_Extension
     public function fortune()
     {
         return $this->fortune->generate();
+    }
+
+    public function dateFormat(\DateTime $date = null)
+    {
+        return $date ? $date->format('d.m.Y H:i:s') : "";
     }
 
     /**

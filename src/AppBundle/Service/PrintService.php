@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Buzz;
+use AppBundle\Repository\FirefighterRepository;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 
 class PrintService implements DispatchInterface
@@ -17,10 +18,16 @@ class PrintService implements DispatchInterface
      */
     private $templating;
 
-    public function __construct($printerIp, \Twig_Environment $templating)
+    /**
+     * @var FirefighterRepository
+     */
+    private $firefighterRepository;
+
+    public function __construct($printerIp, \Twig_Environment $templating, FirefighterRepository $firefighterRepository)
     {
         $this->printerIp = $printerIp;
         $this->templating = $templating;
+        $this->firefighterRepository = $firefighterRepository;
     }
 
     public function dispatch(Buzz $buzz)
@@ -41,8 +48,9 @@ class PrintService implements DispatchInterface
 
     private function constructRequestContent(Buzz $buzz)
     {
-        $xml = $this->templating->render('print/ticket.xml.twig', [
-            'buzz' => $buzz
+        $xml = $this->templating->render('print/buzz.xml.twig', [
+            'buzz' => $buzz,
+            'firefighter' => $this->firefighterRepository->findActive()
         ]);
 
         simplexml_load_string($xml, "SimpleXMLElement", LIBXML_NOCDATA);
