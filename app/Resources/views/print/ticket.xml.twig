@@ -6,7 +6,7 @@
 
             <text width="2" height="2" align="left">Ticket: #{{ buzz.id }}&#10;</text>
             <feed line="1" />
-            <text width="1" height="1" align="left">Issue at: {{ buzz.date|date('d.m.Y H:i:s') }}&#10;</text>
+            <text width="1" height="1" align="left">Issued at: {{ buzz.date|date('d.m.Y H:i:s') }}&#10;</text>
 
             <feed line="2" />
             <text width="1" height="1" align="left">{{ "Please wait patiently. A member of our staff will be with you shortly" | wordwrap }}&#10;</text>
@@ -15,7 +15,7 @@
             <text width="1" height="1" align="left">The estimated queue time is 30 minutes.</text>
 
             <feed line="2" />
-            <text width="1" height="1" align="left">---------------------------------------</text>
+            <text width="1" height="1" align="left">{{ '-'|repeat(42) }}</text>
             <feed line="1" />
             <text width="1" height="1" align="left">{{ "Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the Individual or Organization (\"Licensee\") accessing and otherwise use parts of PwC Buzz™, provided that license before distributing the Program under this License. Code are defined when they are willing to distribute software through any other recipients of the Licensed Program or a future version of the Derived Program. Article 3 (Restriction) The license agreements (excluding distributors and resellers) which have been properly granted shall survive any termination of this package to run the original authors' reputations. Finally, any free program will individually obtain patent licenses, in effect making the claim and the rights granted herein."|wordwrap }}</text>
 
