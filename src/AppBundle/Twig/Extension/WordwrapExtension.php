@@ -40,7 +40,7 @@ class WordwrapExtension extends \Twig_Extension
      */
     public function wordwrap($text, $charCount = 42)
     {
-        return wordwrap($text, $charCount);
+        return wordwrap(str_replace("\t", "    ", $text), $charCount);
     }
 
     /**
