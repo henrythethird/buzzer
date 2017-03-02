@@ -10,6 +10,6 @@ class FortuneService {
 
     private function prepareCommand()
     {
-        return "fortune -s";
+        return "/usr/games/fortune -s";
     }
 }
