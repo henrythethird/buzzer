@@ -19,6 +19,8 @@ class WordwrapExtension extends \Twig_Extension
             new \Twig_SimpleFilter('wordwrap', [$this, 'wordwrap']),
             new \Twig_SimpleFilter('repeat', [$this, 'repeat']),
             new \Twig_SimpleFilter('dateFormat', [$this, 'dateFormat']),
+            new \Twig_SimpleFilter('datetimeFormat', [$this, 'datetimeFormat']),
+            new \Twig_SimpleFilter('daysUntil', [$this, 'daysUntil']),
         ];
     }
 
@@ -34,9 +36,19 @@ class WordwrapExtension extends \Twig_Extension
         return $this->fortune->generate();
     }
 
-    public function dateFormat(\DateTime $date = null)
+    public function daysUntil(\DateTime $date = null)
+    {
+        return $date ? $date->diff(new \DateTime('today'))->days : "";
+    }
+
+    public function datetimeFormat(\DateTime $date = null)
     {
         return $date ? $date->format('d.m.Y H:i:s') : "";
+    }
+
+    public function dateFormat(\DateTime $date = null)
+    {
+        return $date ? $date->format('d.m.Y') : "";
     }
 
     /**

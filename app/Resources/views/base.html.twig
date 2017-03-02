@@ -11,22 +11,65 @@
     </head>
     <body>
         {% block body %}
-            <div class="container">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{ path('default_index') }}">Buzz&#8482;</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a href="{{ path('default_index') }}">Incidents</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('statistics_index') }}">Statistics</a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a>
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container container-wrapper">
+                {% block container %}
                 <div class="row">
-                    <div class="col-xs-9">
+                    <div class="col-xs-12 col-md-8">
                         {% block center %}
                         {% endblock %}
                     </div>
-                    <div class="col-xs-3">
+                    <div class="col-xs-12 col-md-4">
                         {% block right %}
+                            {{ render(controller('AppBundle:Default:firefighter')) }}
                         {% endblock %}
                     </div>
                 </div>
+                {% endblock %}
             </div>
+
+            <footer class="navbar navbar-default navbar-fixed-bottom">
+                <div class="container">
+                    <p class="text-muted">
+                        &copy; Buzz&#8482; {{ date('now')|date('Y') }}
+                        <span class="pull-right">There's no real reason to have a footer. But it just looks like it should be here.</span>
+                    </p>
+                </div>
+            </footer>
         {% endblock %}
         {% block javascripts %}
-        <style href="{{ asset('js/jquery.min.js') }}"></style>
-        <style href="{{ asset('js/bootstrap.min.js') }}"></style>
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>

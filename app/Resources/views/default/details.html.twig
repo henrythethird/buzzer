@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block center %}
+    <h1>Incident #{{ buzz.id }}</h1>
+
+    <br>
+    <br>
+    <table class="table table-responsive">
+        <tr>
+            <th style="width: 25%;">Status:</th>
+            <td>{% include 'helper/status.html.twig' with {status: buzz.status} %}</td>
+        </tr>
+        <tr>
+            <th>Issue Date:</th>
+            <td>{{ buzz.issueDate|datetimeFormat }}</td>
+        </tr>
+        <tr>
+            <th>Resolved Date:</th>
+            <td>{{ buzz.resolveDate|datetimeFormat }}</td>
+        </tr>
+        <tr>
+            <th>Report:</th>
+            <td>
+                {% if buzz.description %}
+                    <pre style="white-space: pre-wrap">{{ buzz.description }}</pre>
+                {% else %}
+                    <em class="text-muted">No report</em>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+{% endblock %}

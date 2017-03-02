@@ -1,0 +1,24 @@
+<h1>Firefighter</h1>
+<br>
+<table class="table">
+    <tr>
+        <th>Currently:</th>
+        <td>{% include 'helper/user.html.twig' %}</td>
+    </tr>
+    <tr>
+        <th>Days left:</th>
+        <td>{{ firefighter.activeFrom|daysUntil }}</td>
+    </tr>
+    <tr>
+        <th>From:</th>
+        <td>{{ firefighter.activeFrom|dateFormat }}</td>
+    </tr>
+    <tr>
+        <th>To:</th>
+        <td>{{ firefighter.activeTo|dateFormat }}</td>
+    </tr>
+    <tr>
+        <th>Up Next:</th>
+        <td>{% include 'helper/user.html.twig' with {firefighter: null} %}</td>
+    </tr>
+</table>

@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block center %}
-    <h1>Buzzes:</h1>
+    <h1>Incident reports</h1>
+
     <table class="table table-responsive">
         <thead>
         <tr>
@@ -14,18 +15,16 @@
         <tbody>
     {% for buzz in buzzes %}
         <tr>
-            <td>#{{ buzz.id }}</td>
-            <td class="text-right">{{ buzz.issueDate|dateFormat }}</td>
-            <td class="text-right">{{ buzz.resolveDate|dateFormat }}</td>
+            <td>
+                <a href="{{ path('default_details', {buzz: buzz.id}) }}">
+                    #{{ buzz.id }}
+                </a>
+            </td>
+            <td class="text-right">{{ buzz.issueDate|datetimeFormat }}</td>
+            <td class="text-right">{{ buzz.resolveDate|datetimeFormat }}</td>
             <td class="text-right">{% include 'helper/status.html.twig' with {status: buzz.status} %}</td>
         </tr>
     {% endfor %}
         </tbody>
     </table>
-{% endblock %}
-
-{% block right %}
-    <h1>Firefighter</h1>
-
-    <p>Current firefighter: {{ firefighter.name }}</p>
 {% endblock %}

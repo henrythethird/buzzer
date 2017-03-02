@@ -1,0 +1,9 @@
+{% set class = 'label-warning' %}
+{% set label = 'Unknown' %}
+{% if firefighter %}
+    {% set class = 'label-success' %}
+    {% set label = firefighter.name %}
+{% endif %}
+<span class="label {{ class }}">
+    {{ label }}
+</span>
