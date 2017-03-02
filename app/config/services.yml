@@ -13,6 +13,7 @@ services:
 
     app.fortune:
         class: AppBundle\Service\FortuneService
+        arguments: ["%%fortune_path%%"]
 
 
     app.twig.wordwrap:

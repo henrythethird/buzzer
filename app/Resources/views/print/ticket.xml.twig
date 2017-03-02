@@ -7,7 +7,7 @@
             <text width="2" height="2" align="left">Ticket: #{{ buzz.id }}&#10;</text>
             <feed line="1" />
             <text width="1" height="1" align="left">Issue date: {{ buzz.date|date('d.m.Y') }}&#10;</text>
-            <text width="1" height="1" align="left">Issue time: {{ buzz.date|date('H:i:s') }}&#10; GMT</text>
+            <text width="1" height="1" align="left">Issue time: {{ buzz.date|date('H:i:s') }} GMT&#10;</text>
 
             <feed line="2" />
             <text width="1" height="1" align="left">{{ "Please wait patiently. A member of our staff will be with you shortly" | wordwrap }}&#10;</text>
@@ -15,7 +15,7 @@
             <feed line="2" />
             <text width="1" height="1" align="left">The estimated queue time is 30 minutes.</text>
             <feed line="2" />
-            <text width="1" height="1" align="left" em="true">Please come visit us again soon!</text>
+            <text width="1" height="1" align="left" em="true">{{ "Please come visit us again soon! We are looking forward to the next incident" | wordwrap }}</text>
 
             <text em="false" />
 

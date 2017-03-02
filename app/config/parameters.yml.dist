@@ -13,3 +13,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     printer_ip:        localhost
+
+    fortune_path:      '/usr/games/fortune -s'

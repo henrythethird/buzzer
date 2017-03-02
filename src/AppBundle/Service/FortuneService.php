@@ -3,13 +3,15 @@
 namespace AppBundle\Service;
 
 class FortuneService {
-    public function generate()
+    private $fortunePath;
+
+    public function __construct($fortunePath)
     {
-        return shell_exec($this->prepareCommand());
+        $this->fortunePath = $fortunePath;
     }
 
-    private function prepareCommand()
+    public function generate()
     {
-        return "/usr/games/fortune -s";
+        return shell_exec($this->fortunePath);
     }
 }
