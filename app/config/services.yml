@@ -10,3 +10,9 @@ services:
     app.dispatcher:
         class: AppBundle\Service\DispatchService
         arguments: [["@app.mailer", "@app.printer"]]
+
+    app.twig.wordwrap:
+        class: AppBundle\Twig\Extension\WordwrapExtension
+        public: false
+        tags:
+            - { name: twig.extension }
