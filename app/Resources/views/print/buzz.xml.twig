@@ -1,7 +1,7 @@
 {% extends 'print/epos-print.xml.twig' %}
 
 {% block content %}
-    <text width="2" height="2">Ticket: #{{ buzz.id }}&#10;</text>
+    <text width="2" height="2">Incident: #{{ buzz.id }}&#10;</text>
     <feed line="1" />
     <text width="1" height="1">Issue date: {{ buzz.date|date('d.m.Y') }}&#10;</text>
     <text>Issue time: {{ buzz.date|date('H:i:s') }} GMT&#10;</text>

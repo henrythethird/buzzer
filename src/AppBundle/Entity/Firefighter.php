@@ -25,13 +25,13 @@ class Firefighter
     private $name;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      * @var \DateTime
      */
     private $activeFrom;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      * @var \DateTime
      */
     private $activeTo;
