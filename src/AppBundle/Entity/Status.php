@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Embeddable()
  */
-class BuzzStatus
+class Status
 {
     /**
      * @ORM\Column(type="integer")
@@ -39,7 +39,7 @@ class BuzzStatus
 
     /**
      * @param integer $status
-     * @return BuzzStatus
+     * @return Status
      */
     public function setStatus($status)
     {

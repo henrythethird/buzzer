@@ -7,6 +7,7 @@ use AppBundle\Entity\Firefighter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -14,14 +15,18 @@ class DefaultController extends Controller
      * @Route("/", name="default_index")
      * @Template("default/index.html.twig")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $buzzes = $this->getDoctrine()
-            ->getRepository(Buzz::class)
-            ->findBy([], ['issueDate' => 'DESC']);
+        $paginator = $this->get('knp_paginator');
+
+        $pagination = $paginator->paginate(
+            $this->getDoctrine()->getRepository(Buzz::class)->findAllFrontQB(),
+            $request->query->getInt('page', 1),
+            $this->getParameter('page_range')
+        );
 
         return [
-            'buzzes' => $buzzes,
+            'pagination' => $pagination,
         ];
     }
 

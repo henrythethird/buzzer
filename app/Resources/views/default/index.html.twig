@@ -6,14 +6,14 @@
     <table class="table table-responsive">
         <thead>
         <tr>
-            <th>Number</th>
-            <th class="text-right">Issued</th>
-            <th class="text-right">Resolved</th>
-            <th class="text-right">Status</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Number', 'buzz.id' ) }}</th>
+            <th class="text-right">{{ knp_pagination_sortable(pagination, 'Issued', 'buzz.issueDate') }}</th>
+            <th class="text-right">{{ knp_pagination_sortable(pagination, 'Resolved', 'buzz.resolvedDate') }}</th>
+            <th class="text-right">{{ knp_pagination_sortable(pagination, 'Status', 'buzz.status') }}</th>
         </tr>
         </thead>
         <tbody>
-    {% for buzz in buzzes %}
+    {% for buzz in pagination %}
         <tr>
             <td>
                 <a href="{{ path('default_details', {buzz: buzz.id}) }}">
@@ -27,4 +27,8 @@
     {% endfor %}
         </tbody>
     </table>
+
+    <nav aria-label="Page navigation">
+        {{ knp_pagination_render(pagination) }}
+    </nav>
 {% endblock %}

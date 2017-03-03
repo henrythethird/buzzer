@@ -1,0 +1,10 @@
+knp_paginator:
+    page_range: '%page_range%'
+    default_options:
+        page_name: page
+        sort_field_name: sort
+        sort_direction_name: direction
+        distinct: true
+    template:
+        pagination: :helper:pagination.html.twig
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig

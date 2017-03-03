@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BuzzRepository")
  * @ORM\Table
  */
 class Buzz
@@ -31,8 +31,8 @@ class Buzz
     private $resolveDate;
 
     /**
-     * @ORM\Embedded(class="AppBundle\Entity\BuzzStatus")
-     * @var BuzzStatus
+     * @ORM\Embedded(class="AppBundle\Entity\Status")
+     * @var Status
      */
     private $status;
 
@@ -45,7 +45,7 @@ class Buzz
     public function __construct()
     {
         $this->issueDate = new \DateTime();
-        $this->status = new BuzzStatus();
+        $this->status = new Status();
     }
 
     /**
@@ -93,7 +93,7 @@ class Buzz
     }
 
     /**
-     * @return BuzzStatus
+     * @return Status
      */
     public function getStatus()
     {
@@ -101,10 +101,10 @@ class Buzz
     }
 
     /**
-     * @param BuzzStatus $status
+     * @param Status $status
      * @return Buzz
      */
-    public function setStatus(BuzzStatus $status)
+    public function setStatus(Status $status)
     {
         $this->status = $status;
         return $this;

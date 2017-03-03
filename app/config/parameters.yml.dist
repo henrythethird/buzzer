@@ -15,3 +15,5 @@ parameters:
     printer_ip:        localhost
 
     fortune_path:      '/usr/games/fortune -s'
+
+    page_range:        20
