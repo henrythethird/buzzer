@@ -9,6 +9,6 @@ class BuzzRepository extends EntityRepository
     public function findAllFrontQB()
     {
         return $this->createQueryBuilder('buzz')
-            ->orderBy('buzz.issueDate');
+            ->orderBy('buzz.issueDate', 'DESC');
     }
 }
