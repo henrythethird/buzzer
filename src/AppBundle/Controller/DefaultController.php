@@ -18,7 +18,7 @@ class DefaultController extends Controller
     {
         $buzzes = $this->getDoctrine()
             ->getRepository(Buzz::class)
-            ->findAll();
+            ->findBy([], ['issueDate' => 'DESC']);
 
         return [
             'buzzes' => $buzzes,
