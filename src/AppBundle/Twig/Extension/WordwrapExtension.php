@@ -38,7 +38,7 @@ class WordwrapExtension extends \Twig_Extension
 
     public function daysUntil(\DateTime $date = null)
     {
-        return $date ? $date->diff(new \DateTime('today'))->days : "";
+        return $date ? $date->diff(new \DateTime('today'))->days + 1 : "";
     }
 
     public function datetimeFormat(\DateTime $date = null)
@@ -48,7 +48,7 @@ class WordwrapExtension extends \Twig_Extension
 
     public function dateFormat(\DateTime $date = null)
     {
-        return $date ? $date->format('d.m.Y') : "";
+        return $date ? $date->format('D, d.m.Y') : "";
     }
 
     /**

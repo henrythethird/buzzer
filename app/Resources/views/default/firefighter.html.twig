@@ -3,22 +3,22 @@
 <table class="table">
     <tr>
         <th>Currently:</th>
-        <td>{% include 'helper/user.html.twig' %}</td>
+        <td class="text-right">{% include 'helper/user.html.twig' %}</td>
     </tr>
     <tr>
         <th>Days left:</th>
-        <td>{{ firefighter.activeTo|daysUntil }}</td>
+        <td class="text-right">{{ firefighter.activeTo|daysUntil }}</td>
     </tr>
     <tr>
         <th>From:</th>
-        <td>{{ firefighter.activeFrom|dateFormat }}</td>
+        <td class="text-right">{{ firefighter.activeFrom|dateFormat }}</td>
     </tr>
     <tr>
         <th>To:</th>
-        <td>{{ firefighter.activeTo|dateFormat }}</td>
+        <td class="text-right">{{ firefighter.activeTo|dateFormat }}</td>
     </tr>
     <tr>
         <th>Up Next:</th>
-        <td>{% include 'helper/user.html.twig' with {firefighter: null} %}</td>
+        <td class="text-right">{% include 'helper/user.html.twig' with {firefighter: null} %}</td>
     </tr>
 </table>
