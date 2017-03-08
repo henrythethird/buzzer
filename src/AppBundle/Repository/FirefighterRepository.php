@@ -20,4 +20,16 @@ class FirefighterRepository extends EntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function findNextActive(Firefighter $firefighter = null)
+    {
+        $date = $firefighter ? clone $firefighter->getActiveTo() : new \DateTime();
+        return $this->createQueryBuilder('firefighter')
+            ->where('firefighter.activeFrom >= :DATE')
+            ->setParameter('DATE', $date->modify('+1 day'))
+            ->addOrderBy('firefighter.activeFrom')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

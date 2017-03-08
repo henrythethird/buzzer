@@ -66,10 +66,10 @@
 
             <footer class="navbar navbar-default navbar-fixed-bottom">
                 <div class="container">
-                    <p class="text-muted">
-                        &copy; Buzz&#8482; {{ date('now')|date('Y') }}
-                        <span class="pull-right">{{ fortune() }}</span>
-                    </p>
+                    <div class="row">
+                        <div class="col-xs-4 text-muted">&copy; Buzz&#8482; {{ date('now')|date('Y') }}</div>
+                        <div class="col-xs-8 text-muted text-right">{{ fortune() }}</div>
+                    </div>
                 </div>
             </footer>
         {% endblock %}

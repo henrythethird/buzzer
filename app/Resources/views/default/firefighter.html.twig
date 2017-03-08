@@ -1,24 +1,37 @@
 <h1>Firefighter</h1>
 <br>
 <table class="table">
-    <tr>
+    <thead>
+    <tr class="{% if firefighter %}success{% else %}warning{% endif %}">
         <th>Currently:</th>
-        <td class="text-right">{% include 'helper/user.html.twig' %}</td>
+        <th class="text-right">{% include 'helper/user.html.twig' %}</th>
     </tr>
-    <tr>
-        <th>Days left:</th>
-        <td class="text-right">{{ firefighter.activeTo|daysUntil }}</td>
-    </tr>
-    <tr>
-        <th>From:</th>
-        <td class="text-right">{{ firefighter.activeFrom|dateFormat }}</td>
-    </tr>
-    <tr>
-        <th>To:</th>
-        <td class="text-right">{{ firefighter.activeTo|dateFormat }}</td>
-    </tr>
-    <tr>
+    </thead>
+    {% if firefighter %}
+        <tr>
+            <th>Days left:</th>
+            <td class="text-right">{{ firefighter.activeTo|daysUntil }}</td>
+        </tr>
+        <tr>
+            <th>From:</th>
+            <td class="text-right">{{ firefighter.activeFrom|dateFormat }}</td>
+        </tr>
+        <tr>
+            <th>To:</th>
+            <td class="text-right">{{ firefighter.activeTo|dateFormat }}</td>
+        </tr>
+        <tr>
+            <th># Confirmed:</th>
+            <td class="text-right">{{ confirmedCount }}</td>
+        </tr>
+        <tr>
+            <th># Reported:</th>
+            <td class="text-right">{{ buzzCount }}</td>
+        </tr>
+    {% endif %}
+
+    <tr class="{% if nextFirefighter %}success{% else %}warning{% endif %}">
         <th>Up Next:</th>
-        <td class="text-right">{% include 'helper/user.html.twig' with {firefighter: null} %}</td>
+        <th class="text-right">{% include 'helper/user.html.twig' with {firefighter: nextFirefighter} %}</th>
     </tr>
 </table>

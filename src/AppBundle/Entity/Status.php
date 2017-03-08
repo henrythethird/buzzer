@@ -14,17 +14,19 @@ class Status
      */
     private $status;
 
-    const STATUS_OPEN = 0;
-    const STATUS_CLOSED = 1;
-    const STATUS_INVALID = 2;
+    const STATUS_UNCONFIRMED = 0;
+    const STATUS_OPEN = 1;
+    const STATUS_CLOSED = 2;
+    const STATUS_INVALID = 3;
 
     const MAP = [
+        self::STATUS_UNCONFIRMED => "Unconfirmed",
         self::STATUS_OPEN => "Open",
         self::STATUS_CLOSED => "Closed",
         self::STATUS_INVALID => "Invalid"
     ];
 
-    public function __construct($status = self::STATUS_OPEN)
+    public function __construct($status = self::STATUS_UNCONFIRMED)
     {
         $this->status = $status;
     }

@@ -4,7 +4,7 @@
     <text width="2" height="2">Incident: #{{ buzz.id }}&#10;</text>
     <feed line="1" />
     <text width="1" height="1">Issue date: {{ buzz.issueDate|date('D, d.m.Y') }}&#10;</text>
-    <text>Issue time: {{ buzz.issueDate|date('H:i:s') }} GMT&#10;</text>
+    <text>Issue time: {{ buzz.issueDate|date('H:i:s') }}&#10;</text>
 
     <feed line="2" />
     <text>{{ "Please wait patiently. A member of our staff will be with you shortly" | wordwrap }}&#10;</text>

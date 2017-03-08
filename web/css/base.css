@@ -7,21 +7,26 @@ body {
 }
 
 .status0 {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+.status1 {
     background-color: lightblue;
     color: black;
 }
 
-.status1 {
+.status2 {
     background-color: black;
     color: white;
 }
 
-.status2 {
+.status3 {
     background-color: red;
     color: white;
 }
 
-footer p.text-muted {
+footer div.text-muted {
     margin: 20px 0;
 }
 

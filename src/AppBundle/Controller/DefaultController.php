@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Buzz;
 use AppBundle\Entity\Firefighter;
+use AppBundle\Entity\Status;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -47,12 +48,27 @@ class DefaultController extends Controller
      */
     public function firefighterAction()
     {
-        $firefighter = $this->getDoctrine()
-            ->getRepository(Firefighter::class)
-            ->findActive();
+        $firefighterRepository = $this->getDoctrine()->getRepository(Firefighter::class);
+
+        $firefighter = $firefighterRepository->findActive();
+
+        $nextFirefighter = $firefighterRepository->findNextActive($firefighter);
+
+        $totalCount = $this->getDoctrine()
+            ->getRepository(Buzz::class)
+            ->findCountByFirefighter($firefighter);
+
+        $confirmedCount = $this->getDoctrine()
+            ->getRepository(Buzz::class)
+            ->findCountByFirefighter($firefighter, [
+                Status::STATUS_UNCONFIRMED
+            ]);
 
         return [
-            'firefighter' => $firefighter
+            'firefighter' => $firefighter,
+            'nextFirefighter' => $nextFirefighter,
+            'buzzCount' => $totalCount,
+            'confirmedCount' => $confirmedCount
         ];
     }
 }
