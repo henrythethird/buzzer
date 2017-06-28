@@ -1,0 +1,29 @@
+{% extends 'print/epos-print.xml.twig' %}
+
+{% block content %}
+    {% set width = 12 %}
+
+    <text width="2" height="2" align="center">Tic-tac-toe</text>
+    <feed line="2" />
+
+    <text width="1" height="1"> ┌{{ '─'|repeat(width) }}┬{{ '─'|repeat(width) }}┬{{ '─'|repeat(width) }}┐</text>
+    <feed line="1" />
+    {% for i in range(1,4) %}
+        <text> │{{ ' '|repeat(width) }}│{{ ' '|repeat(width) }}│{{ ' '|repeat(width) }}│</text>
+        <feed line="1" />
+    {% endfor %}
+    <text> ├{{ '─'|repeat(width) }}┼{{ '─'|repeat(width) }}┼{{ '─'|repeat(width) }}┤</text>
+    <feed line="1" />
+    {% for i in range(1,4) %}
+        <text> │{{ ' '|repeat(width) }}│{{ ' '|repeat(width) }}│{{ ' '|repeat(width) }}│</text>
+        <feed line="1" />
+    {% endfor %}
+    <text> ├{{ '─'|repeat(width) }}┼{{ '─'|repeat(width) }}┼{{ '─'|repeat(width) }}┤</text>
+    <feed line="1" />
+    {% for i in range(1,4) %}
+        <text> │{{ ' '|repeat(width) }}│{{ ' '|repeat(width) }}│{{ ' '|repeat(width) }}│</text>
+        <feed line="1" />
+    {% endfor %}
+    <text> └{{ '─'|repeat(width) }}┴{{ '─'|repeat(width) }}┴{{ '─'|repeat(width) }}┘</text>
+    <feed line="1" />
+{% endblock %}

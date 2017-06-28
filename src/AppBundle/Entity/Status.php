@@ -12,45 +12,45 @@ class Status
     /**
      * @ORM\Column(type="integer")
      */
-    private $status;
+    private $code;
 
-    const STATUS_UNCONFIRMED = 0;
-    const STATUS_OPEN = 1;
-    const STATUS_CLOSED = 2;
-    const STATUS_INVALID = 3;
+    const UNCONFIRMED = 0;
+    const OPEN = 1;
+    const CLOSED = 2;
+    const INVALID = 3;
 
     const MAP = [
-        self::STATUS_UNCONFIRMED => "Unconfirmed",
-        self::STATUS_OPEN => "Open",
-        self::STATUS_CLOSED => "Closed",
-        self::STATUS_INVALID => "Invalid"
+        self::UNCONFIRMED => "Unconfirmed",
+        self::OPEN => "Open",
+        self::CLOSED => "Closed",
+        self::INVALID => "Invalid"
     ];
 
-    public function __construct($status = self::STATUS_UNCONFIRMED)
+    public function __construct($status = self::UNCONFIRMED)
     {
-        $this->status = $status;
+        $this->code = $status;
     }
 
     /**
      * @return integer
      */
-    public function getStatus()
+    public function getCode()
     {
-        return $this->status;
+        return $this->code;
     }
 
     /**
-     * @param integer $status
+     * @param integer $code
      * @return Status
      */
-    public function setStatus($status)
+    public function setCode($code)
     {
-        $this->status = $status;
+        $this->code = $code;
         return $this;
     }
 
     public function __toString()
     {
-        return self::MAP[$this->getStatus()];
+        return self::MAP[$this->getCode()];
     }
 }

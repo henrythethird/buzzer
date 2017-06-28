@@ -8,8 +8,8 @@
         <tr>
             <th>{{ knp_pagination_sortable(pagination, 'Number', 'buzz.id' ) }}</th>
             <th class="text-right">{{ knp_pagination_sortable(pagination, 'Issued', 'buzz.issueDate') }}</th>
-            <th class="text-right">{{ knp_pagination_sortable(pagination, 'Resolved', 'buzz.resolvedDate') }}</th>
-            <th class="text-right">{{ knp_pagination_sortable(pagination, 'Status', 'buzz.status') }}</th>
+            <th class="text-right">{{ knp_pagination_sortable(pagination, 'Resolved', 'buzz.resolveDate') }}</th>
+            <th class="text-right">{{ knp_pagination_sortable(pagination, 'Status', 'buzz.status.code') }}</th>
         </tr>
         </thead>
         <tbody>

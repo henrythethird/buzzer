@@ -43,6 +43,23 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/buzz", name="default_buzz")
+     */
+    public function dispatchBuzzAction()
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $buzz = new Buzz();
+        $manager->persist($buzz);
+        $manager->flush();
+
+        $this->get('app.dispatcher')->dispatchBuzz($buzz);
+
+        return $this->redirectToRoute('default_details', [
+            'buzz' => $buzz->getId()
+        ]);
+    }
+
+    /**
      * @Route("/firefighter", name="default_firefighter")
      * @Template("default/firefighter.html.twig")
      */
@@ -61,7 +78,8 @@ class DefaultController extends Controller
         $confirmedCount = $this->getDoctrine()
             ->getRepository(Buzz::class)
             ->findCountByFirefighter($firefighter, [
-                Status::STATUS_UNCONFIRMED
+                Status::UNCONFIRMED,
+                Status::INVALID
             ]);
 
         return [

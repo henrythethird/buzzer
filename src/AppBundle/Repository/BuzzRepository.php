@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Buzz;
 use AppBundle\Entity\Firefighter;
 use Doctrine\ORM\EntityRepository;
 
@@ -36,11 +37,21 @@ class BuzzRepository extends EntityRepository
             ]);
 
         if ($statusBlacklist) {
-            $queryBuilder->andWhere('buzz.status.status != :STATUS')
+            $queryBuilder->andWhere('buzz.status.code NOT IN (:STATUS)')
                 ->setParameter('STATUS', $statusBlacklist);
         }
 
         return $queryBuilder->getQuery()
             ->getSingleScalarResult();
+    }
+
+    /**
+     * @return array
+     */
+    public function findByDay()
+    {
+        return array_reduce($this->findAll(), function($acc, Buzz $buzz) {
+            $acc[$buzz->getIssueDate()->format('d')] += 1;
+        }, []);
     }
 }

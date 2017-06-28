@@ -1,0 +1,15 @@
+{% extends 'print/epos-print.xml.twig' %}
+
+{% block content %}
+<text width="1" height="1" align="left">{{ (fields.project.name ~ " / " ~ ticketNr)|wordwrap }}&#10;</text>
+<text width="2" height="2" align="left">{{ fields.summary|wordwrap(21) }}&#10;&#10;</text>
+<text width="1" height="1" em="false" ul="true">Details:&#10;</text>
+<text em="true" ul="false">Type: </text><text em="false">{{ fields.issuetype.name }}&#10;</text>
+<text em="true">Priority:  </text><text em="false">{{ fields.priority.name }}&#10;</text>
+<text em="true">Status: </text><text em="false">{{ fields.status.name }}&#10;</text>
+<text em="false" ul="true">People:&#10;</text>
+<text em="true" ul="false">Assignee: </text><text em="false">{% if fields.assignee %}{{ fields.assignee.displayName }}{% endif %}&#10;</text>
+<text em="true">Creator: </text><text em="false">{{ fields.creator.displayName }}&#10;&#10;</text>
+<text>{{ fields.description|wordwrap }}</text>
+<feed line="1" />
+{% endblock %}

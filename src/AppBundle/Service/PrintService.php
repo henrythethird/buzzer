@@ -30,11 +30,11 @@ class PrintService implements DispatchInterface
         $this->firefighterRepository = $firefighterRepository;
     }
 
-    public function dispatch(Buzz $buzz)
+    public function dispatch($postFields)
     {
         $ch = curl_init($this->constructUrl());
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $this->constructRequestContent($buzz));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -44,19 +44,6 @@ class PrintService implements DispatchInterface
         curl_exec($ch);
 
         curl_close($ch);
-    }
-
-    private function constructRequestContent(Buzz $buzz)
-    {
-        $xml = $this->templating->render('print/buzz.xml.twig', [
-            'buzz' => $buzz,
-            'firefighter' => $this->firefighterRepository->findActive()
-        ]);
-
-        simplexml_load_string($xml, "SimpleXMLElement", LIBXML_NOCDATA);
-        $json = json_encode($xml);
-
-        return json_decode($json,TRUE);
     }
 
     private function constructUrl()

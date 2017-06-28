@@ -6,5 +6,5 @@ use AppBundle\Entity\Buzz;
 
 interface DispatchInterface
 {
-    public function dispatch(Buzz $buzz);
+    public function dispatch($fields);
 }
